@@ -9,13 +9,39 @@ const MIN_FONT_SIZE = 8;
 const MAX_FONT_SIZE = 24;
 
 const spoofConfig = [
-    'spoofBuild',
-    'spoofProvider',
-    'spoofProps',
-    'spoofSignature',
-    'spoofVendingBuild',
-    'spoofVendingSdk'
+    { config: 'spoofBuild', label: 'Spoof Build', isAdvanced: false },
+    { config: 'spoofVendingBuild', label: 'Spoof Build (Play Store)', isAdvanced: false },
+    { config: 'spoofProps', label: 'Spoof Props', isAdvanced: true },
+    { config: 'spoofProvider', label: 'Spoof Provider', isAdvanced: true },
+    { config: 'spoofSignature', label: 'Spoof Signature', isAdvanced: true },
+    { config: 'spoofVendingSdk', label: 'Spoof Sdk (Play Store)', isAdvanced: true }
 ];
+
+// Apeend spoofConfig button
+function appendSpoofConfigToggles() {
+    const advancedDiv = document.getElementById('advanced');
+    const buttonBox = document.querySelector('.button-box');
+    if (!buttonBox) return;
+
+    spoofConfig.forEach((item, idx) => {
+        const { config, label, isAdvanced } = item;
+        const container = document.createElement('div');
+        container.className = `toggle-list ripple-element${isAdvanced ? ' advanced-option' : ''}`;
+        container.id = `${config}-container`;
+        container.innerHTML = `
+            <div class="toggle${idx === spoofConfig.length - 1 ? ' last-toggle' : ''}">
+                <span class="toggle-text">${label}</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="${config}-toggle" disabled>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        `;
+        buttonBox.insertBefore(container, advancedDiv);
+    });
+
+    applyButtonEventListeners();
+}
 
 // Apply button event listeners
 function applyButtonEventListeners() {
@@ -129,7 +155,6 @@ async function checkDescription() {
 // Function to load spoof config
 async function loadSpoofConfig() {
     try {
-        
         const { errno, stdout, stderr } = await exec(`
             if [ -f /data/adb/pif.prop ]; then
                 cat /data/adb/pif.prop
@@ -141,9 +166,9 @@ async function loadSpoofConfig() {
 
         const pifMap = parsePropToMap(stdout);
 
-        spoofConfig.forEach(config => {
-            const toggle = document.getElementById(`${config}-toggle`);
-            toggle.checked = pifMap[config];
+        spoofConfig.forEach(item => {
+            const toggle = document.getElementById(`${item.config}-toggle`);
+            toggle.checked = pifMap[item.config];
         });
 
         if (model === null) model = pifMap.MODEL;
@@ -183,9 +208,9 @@ function resetPifProp() {
 
 // Function to setup spoof config button
 function setupSpoofConfigButton() {
-    spoofConfig.forEach(config => {
-        const container = config + "-container";
-        const toggle = document.getElementById(`${config}-toggle`);
+    spoofConfig.forEach(item => {
+        const container = item.config + "-container";
+        const toggle = document.getElementById(`${item.config}-toggle`);
 
         document.getElementById(container).addEventListener('click', async () => {
             if (shellRunning) return;
@@ -195,12 +220,12 @@ function setupSpoofConfigButton() {
                 [ ! -f /data/adb/pif.prop ] || echo "/data/adb/pif.prop"
             `);
             if (errno === 0) {
-                const isSuccess = await updateSpoofConfig(toggle, config, stdout);
+                const isSuccess = await updateSpoofConfig(toggle, item.config, stdout);
                 if (isSuccess) {
                     loadSpoofConfig();
-                    appendToOutput(`[+] ${toggle.checked ? "Disabled" : "Enabled"} ${config}`);
+                    appendToOutput(`[+] ${toggle.checked ? "Disabled" : "Enabled"} ${item.config}`);
                 } else {
-                    appendToOutput(`[!] Failed to ${toggle.checked ? "disable" : "enable"} ${config}`);
+                    appendToOutput(`[!] Failed to ${toggle.checked ? "disable" : "enable"} ${item.config}`);
                 }
                 await exec(`
                     killall com.google.android.gms.unstable || true
@@ -461,7 +486,7 @@ function getDeviceList() {
     let cachedList = localStorage.getItem(cacheKey);
     let cachedTs = localStorage.getItem(tsKey);
 
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
         if (cachedList && cachedTs && (now - parseInt(cachedTs, 10) < oneDayMs)) {
             try {
                 resolve(JSON.parse(cachedList));
@@ -470,6 +495,7 @@ function getDeviceList() {
                 // fallback to refresh if parse fails
             }
         }
+        await new Promise(resolve => setTimeout(resolve, 300));
         let listJson = "";
         const result = spawn('sh', ["/data/adb/modules/playintegrityfix/autopif.sh", "--list"]);
         result.stdout.on('data', (data) => {
@@ -556,12 +582,12 @@ function updateFontSize(newSize) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     checkMMRL();
+    appendSpoofConfigToggles();
     loadVersionFromModuleProp();
     await loadSpoofConfig();
     setupSpoofConfigButton();
     loadScriptOnlyConfig();
     setupDeviceList();
-    applyButtonEventListeners();
     applyRippleEffect();
     updateAutopif();
 });
