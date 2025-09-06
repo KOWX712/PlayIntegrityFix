@@ -268,6 +268,16 @@ async function updateSpoofConfig(toggle, type, pifFile) {
             if (config.spoofVendingBuild && config.spoofVendingSdk) {
                 appendToOutput('[!] spoofVendingSdk will not take effect when spoofVendingBuild is enabled.');
             }
+
+            // reminder
+            const signature = await exec('unzip -l /system/etc/security/otacerts.zip | grep -oE "testkey|releasekey"');
+            if (signature.errno === 0) {
+                if (signature.stdout.trim() === "testkey" && !config.spoofSignature) {
+                    appendToOutput('[!] Unsigned ROM detected, enable spoofSignature to fix.');
+                } else if (signature.stdout.trim() === "releasekey" && config.spoofSignature) {
+                    appendToOutput('[+] Signed ROM detected, enabling spoofSignature might not be useful.');
+                }
+            }
         } catch (error) {
             console.error(`Failed to update ${pifFile}:`, error);
             isSuccess = false;
