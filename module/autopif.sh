@@ -122,7 +122,7 @@ echo "- new pif.prop saved to /data/adb/pif.prop"
 echo "- Cleaning up ..."
 rm -rf "$TEMPDIR"
 
-for i in $(busybox pidof com.google.android.gms.unstable); do
+for i in $(busybox pidof com.google.android.gms.unstable com.android.vending); do
 	echo "- Killing pid $i"
 	kill -9 "$i"
 done
