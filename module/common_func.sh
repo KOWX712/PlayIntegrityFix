@@ -81,7 +81,6 @@ sleep_pause() {
 
 download_fail() {
     dl_domain=$(echo "$1" | awk -F[/:] '{print $4}')
-    echo "$1" | grep -q "\.zip$" && return
     # Clean up on download fail
     rm -rf "$TEMPDIR"
     ping -c 1 -W 5 "$dl_domain" > /dev/null 2>&1 || {
