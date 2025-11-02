@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action button -->
+    <string name="action_fetch">取得</string>
+    <string name="action_view">檢視</string>
+    <string name="action_auto_security_patch">自動同步安全性更新</string>
+    <string name="action_script_only_mode">僅腳本模式</string>
+    <!-- Terminal -->
+    <string name="terminal_clear">清除</string>
+    <!-- Terminal output -->
+    <string name="output_enabled">已啟用</string>
+    <string name="output_disabled">已停用</string>
+    <string name="output_error_enable_failed">啟用失敗</string>
+    <string name="output_error_disable_failed">停用失敗</string>
+    <string name="output_error_read_pif_prop">讀取 pif.prop 失敗</string>
+    <string name="output_error_write_pif_prop">寫入 pif.prop 失敗</string>
+    <string name="output_error_load_spoof_config">載入偽裝設定失敗</string>
+    <string name="output_warning_third_party_tools">警告：請勿使用第三方工具取得 pif.prop</string>
+    <string name="output_reset_pif_prop">成功重設 pif.prop</string>
+    <string name="output_error_reset_failed">重設 pif.prop 失敗</string>
+    <string name="output_spoofVendingSdk_spoofVendingBuild">啟用 spoofVendingBuild 時，spoofVendingSdk 將不會生效。</string>
+    <string name="output_fetching_from_github">正在從 GitHub 取得 pif.prop...</string>
+    <string name="output_error_fetching_pif_prop">取得 pif.prop 失敗</string>
+    <string name="output_oudated_pif_prop">pif.prop 可能已過期，建議重新更新一次。</string>
+    <string name="output_selinux_permissive">SELinux 狀態為寬鬆模式。</string>
+    <string name="output_testkey">ROM 使用 testkey 簽章，建議啟用 spoofSignature。</string>
+    <string name="output_releasekey">ROM 使用 releasekey 簽章，無須啟用 spoofSignature。</string>
+    <!-- Device list dialog -->
+    <string name="device_list_title">選擇裝置</string>
+    <string name="device_list_random">隨機</string>
+    <string name="device_list_loading">載入中...</string>
+    <string name="device_list_load_failed">載入裝置清單失敗</string>
+    <string name="device_list_button_cancel">取消</string>
+    <string name="device_list_button_autopif">Autopif</string>
+    <string name="device_list_button_github">GitHub</string>
+    <!-- Help dialog -->
+    <string name="help_title">說明</string>
+    <string name="help_spoof_build">偽裝 pif.prop 內的屬性，預設啟用。</string>
+    <string name="help_spoof_props">偽裝系統屬性，未使用 TrickyStore 時請啟用。</string>
+    <string name="help_spoof_provider">自訂 keystore 提供者，未使用 TrickyStore 時請啟用。</string>
+    <string name="help_spoof_signature">偽裝 ROM 簽章，當您的 ROM 以 testkey 簽章時請啟用。您可執行下列指令檢查您的 ROM 簽章：</string>
+    <string name="help_spoof_sdk">若您的裝置運行 Android 13 或以上版本，會將 SDK 版本偽裝為 32；若為 Android 12 或以下則不會生效。此選項可能導致系統不穩定，預設停用。</string>
+    <string name="help_play_store">標有 Play Store 的選項會偽裝至 Play Store（com.android.vending），否則會偽裝至 Droidguard（com.google.android.gms.unstable）。</string>
+    <string name="help_fetch_github">透過 GitHub，autopif 會在 GitHub Action 中每日執行一次，速度快且穩定。</string>
+    <string name="help_fetch_autopif">透過 autopif，會在本機即時執行，部分裝置可能出現問題。</string>
+    <string name="help_view">檢視目前使用的 pif.prop</string>
+    <string name="help_auto_security_patch">自動將 pif.prop 內的安全性更新日期與 TrickyStore 同步。</string>
+    <string name="help_script_only_mode">暫時停用注入至 DroidGuard 與 Play Store，立即生效。僅需處理 PIF 敏感屬性時可啟用此選項。</string>
+    <string name="help_close">關閉</string>
+</resources>
