@@ -6,6 +6,12 @@
 
 ---
 
+## Chinese (Traditional)
+
+- [mattchengg](https://github.com/mattchengg)
+
+---
+
 ## English
 
 - [KOWX712](https://github.com/KOWX712)
