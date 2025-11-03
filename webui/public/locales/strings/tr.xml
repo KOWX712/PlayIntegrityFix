@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Action button -->
+    <string name="action_fetch">Veri Çek</string>
+    <string name="action_view">Görüntüle</string>
+    <string name="action_auto_security_patch">Otomatik güvenlik yaması</string>
+    <string name="action_script_only_mode">Yalnızca komut dosyası modu</string>
+    <!-- Terminal -->
+    <string name="terminal_clear">temizle</string>
+    <!-- Terminal output -->
+    <string name="output_enabled">Etkinleştirildi</string>
+    <string name="output_disabled">Devre dışı</string>
+    <string name="output_error_enable_failed">Etkinleştirilemedi</string>
+    <string name="output_error_disable_failed">Devre dışı bırakılamadı</string>
+    <string name="output_error_read_pif_prop">Pif.prop okunamadı</string>
+    <string name="output_error_write_pif_prop">Pif.prop yazılamadı</string>
+    <string name="output_error_load_spoof_config">Sahte yapılandırma yüklenemedi</string>
+    <string name="output_warning_third_party_tools">Uyarı: pif.prop\'u almak için üçüncü taraf araçlarını kullanmayın</string>
+    <string name="output_reset_pif_prop">Pif.prop başarıyla sıfırlandı</string>
+    <string name="output_error_reset_failed">Pif.prop sıfırlanamadı</string>
+    <string name="output_spoofVendingSdk_spoofVendingBuild">spoofVendingBuild etkinleştirildiğinde spoofVendingSdk geçerli olmayacaktır.</string>
+    <string name="output_fetching_from_github">GitHub\'dan pif.prop alınıyor...</string>
+    <string name="output_error_fetching_pif_prop">Pif.prop getirilemedi</string>
+    <string name="output_oudated_pif_prop">Pif.prop güncelliğini yitirmiş olabilir, güncellemek için bir kez veri çek tuşuna basmayı düşünün.</string>
+    <string name="output_selinux_permissive">SELinux durumuna izin verilir.</string>
+    <string name="output_testkey">Testkey ile işaretlenmiş ROM, spoofSignature\'ı etkinleştirmeniz önerilir.</string>
+    <string name="output_releasekey">Releasekey ile imzalanan ROM, spoofSignature\'ı etkinleştirmek yararlı olmayabilir.</string>
+    <!-- Device list dialog -->
+    <string name="device_list_title">Cihaz Seç</string>
+    <string name="device_list_random">Rastgele</string>
+    <string name="device_list_loading">Yükleniyor...</string>
+    <string name="device_list_load_failed">Cihaz listesi yüklenemedi</string>
+    <string name="device_list_button_cancel">İptal</string>
+    <string name="device_list_button_autopif">Autopif</string>
+    <string name="device_list_button_github">GitHub</string>
+    <!-- Help dialog -->
+    <string name="help_title">Yardım</string>
+    <string name="help_spoof_build">Pif.prop\'ta sahte alan, varsayılan olarak etkindir.</string>
+    <string name="help_spoof_props">Sistem özelliklerini kandır, TrickyStore kullanılmadığında etkinleştirilir.</string>
+    <string name="help_spoof_provider">Özel keystore sağlayıcısı, TrickyStore\'u kullanmadığınızda etkinleştirin.</string>
+    <string name="help_spoof_signature">Sahte rom imzası, romunuz testkey tarafından imzalandığında etkinleştirin. Bu komutu çalıştırarak rom imzanızı kontrol edebilirsiniz:</string>
+    <string name="help_spoof_sdk">Cihazınız Android 13 veya daha yüksek bir sürüm çalıştırıyorsa 32 \'ye kadar olan sahte sdk sürümü, cihazınız Android 12 veya daha düşük bir sürüm çalıştırıyorsa etkili olmaz. Bu seçenek dengesizliğe neden olabilir, varsayılan olarak devre dışıdır.</string>
+    <string name="help_play_store">Play Store seçeneği için Play Store’u (com.android.vending) taklit et; aksi takdirde DroidGuard’ı (com.google.android.gms.unstable) taklit et.</string>
+    <string name="help_fetch_github">GitHub aracılığıyla, GitHub eyleminde günde bir kez autopif çalıştırın, hızlı ve güvenilir.</string>
+    <string name="help_fetch_autopif">Autopif aracılığıyla, autopif yerel olarak gerçek zamanlı olarak çalışır, bazı cihazlarda sorunlu olabilir.</string>
+    <string name="help_view">Mevcut etkin pif.prop\'u görüntüle</string>
+    <string name="help_auto_security_patch">TrickyStore güvenlik yaması ile güvenlik yama tarihini pif.prop olarak otomatik olarak senkronize edin.</string>
+    <string name="help_script_only_mode">Droidguard ve PlayStore\'a enjeksiyonu geçici olarak devre dışı bırakın, hemen etkili olacak. Yalnızca PIF\'ten hassas prop işleme ihtiyacınız olduğunda bunu etkinleştirin.</string>
+    <string name="help_close">Kapalı</string>
+</resources>
