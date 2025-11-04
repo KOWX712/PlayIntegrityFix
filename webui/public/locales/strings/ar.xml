@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action button -->
+    <string name="action_fetch">جلب</string>
+    <string name="action_view">عرض</string>
+    <string name="action_auto_security_patch">تصحيح أمني تلقائي</string>
+    <string name="action_script_only_mode">وضع السكربت فقط</string>
+    <!-- Terminal -->
+    <string name="terminal_clear">مسح</string>
+    <!-- Terminal output -->
+    <string name="output_enabled">مفعل</string>
+    <string name="output_disabled">معطّل</string>
+    <string name="output_error_enable_failed">فشل التفعيل</string>
+    <string name="output_error_disable_failed">فشل التعطيل</string>
+    <string name="output_error_read_pif_prop">فشل في قراءة pif.prop</string>
+    <string name="output_error_write_pif_prop">فشل في كتابة pif.prop</string>
+    <string name="output_error_load_spoof_config">فشل في تحميل إعدادات التزييف</string>
+    <string name="output_warning_third_party_tools">تحذير: لا تستخدم أدوات طرف ثالث لجلب pif.prop</string>
+    <string name="output_reset_pif_prop">تمت إعادة تعيين pif.prop بنجاح</string>
+    <string name="output_error_reset_failed">فشل في إعادة تعيين pif.prop</string>
+    <string name="output_spoofVendingSdk_spoofVendingBuild">لن يعمل spoofVendingSdk عندما يكون spoofVendingBuild مفعّلًا.</string>
+    <string name="output_fetching_from_github">جارٍ جلب pif.prop من GitHub...</string>
+    <string name="output_error_fetching_pif_prop">فشل في جلب pif.prop</string>
+    <string name="output_oudated_pif_prop">من المحتمل أن يكون pif.prop قديمًا، فكّر في جلبه للتحديث.</string>
+    <string name="output_selinux_permissive">حالة SELinux: permissive.</string>
+    <string name="output_testkey">الروم موقّع بـ testkey، يوصى بتمكين spoofSignature.</string>
+    <string name="output_releasekey">الروم موقّع بـ releasekey، قد لا يكون تمكين spoofSignature مفيدًا.</string>
+    <!-- Device list dialog -->
+    <string name="device_list_title">اختيار الجهاز</string>
+    <string name="device_list_random">عشوائي</string>
+    <string name="device_list_loading">جارٍ التحميل...</string>
+    <string name="device_list_load_failed">فشل في تحميل قائمة الأجهزة</string>
+    <string name="device_list_button_cancel">إلغاء</string>
+    <string name="device_list_button_autopif">Autopif</string>
+    <string name="device_list_button_github">GitHub</string>
+    <!-- Help dialog -->
+    <string name="help_title">مساعدة</string>
+    <string name="help_spoof_build">تزوير الحقل الخاص بالبنية في pif.prop، مفعل افتراضيًا.</string>
+    <string name="help_spoof_props">تزوير خصائص النظام، فعّله إذا لم تستخدم TrickyStore.</string>
+    <string name="help_spoof_provider">مزوّد مخزن المفاتيح المخصص، فعّله إذا لم تستخدم TrickyStore.</string>
+    <string name="help_spoof_signature">تزوير توقيع الروم، فعّله عندما يكون الروم الخاص بك موقّعًا بـ testkey. يمكنك التحقق من توقيع الروم بتشغيل الأمر التالي:</string>
+    <string name="help_spoof_sdk">تزوير رقم SDK إلى 32 إذا كان جهازك يعمل أندرويد 13 أو أعلى؛ لن يأخذ هذا التأثير إذا كان جهازك يعمل أندرويد 12 أو أقل. قد يتسبب هذا الخيار في مشاكل تتعلق بالإستقرار، لذا فهو معطّل افتراضيًا.</string>
+    <string name="help_play_store">بالنسبة لخيارات متجر Play، قم بالتزييف لمتجر Play (com.android.vending)، وإلا فقم بالتزييف إلى DroidGuard (com.google.android.gms.unstable).</string>
+    <string name="help_fetch_github">عبر GitHub، يعمل autopif في إجراء GitHub مرة يوميًا، سريع وموثوق.</string>
+    <string name="help_fetch_autopif">عبر Autopif، يعمل Autopif محليًا في الوقت الحقيقي، وقد يسبب مشكلات على بعض الأجهزة.</string>
+    <string name="help_view">عرض pif.prop النشط حاليًا</string>
+    <string name="help_auto_security_patch">مزامنة تاريخ التصحيح الأمني في pif.prop تلقائيًا مع تاريخ التصحيح الأمني في TrickyStore.</string>
+    <string name="help_script_only_mode">تعطيل الحقن مؤقتًا إلى DroidGuard وPlayStore، وسينفذ التغيير فورًا. فعّل هذا عندما تحتاج فقط لمعالجة الخصائص الحساسة من PIF.</string>
+    <string name="help_close">إغلاق</string>
+</resources>

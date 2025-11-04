@@ -1,5 +1,11 @@
 # Play Integrity Fix WebUI Translation Contributor List
 
+## Arabic
+
+- [ZG089](https://github.com/ZG089)
+
+---
+
 ## Chinese (Simplified)
 
 - [KOWX712](https://github.com/KOWX712)
