@@ -6,6 +6,12 @@
 
 ---
 
+## Bahasa Indonesia
+
+- [yourbestregard](https://github.com/yourbestregard)
+
+---
+
 ## Chinese (Simplified)
 
 - [KOWX712](https://github.com/KOWX712)
