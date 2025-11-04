@@ -22,3 +22,9 @@
 
 - [DogancanYr](https://github.com/DogancanYr)
 
+---
+
+## Bahasa Indonesia
+
+- [yourbestregard](https://github.com/yourbestregard)
+

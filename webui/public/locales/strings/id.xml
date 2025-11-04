@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action button -->
+    <string name="action_fetch">Ambil</string>
+    <string name="action_view">Lihat</string>
+    <string name="action_auto_security_patch">Patch keamanan otomatis</string>
+    <string name="action_script_only_mode">Mode skrip saja</string>
+    <!-- Terminal -->
+    <string name="terminal_clear">bersihkan</string>
+    <!-- Terminal output -->
+    <string name="output_enabled">Diaktifkan</string>
+    <string name="output_disabled">Dinonaktifkan</string>
+    <string name="output_error_enable_failed">Gagal mengaktifkan</string>
+    <string name="output_error_disable_failed">Gagal menonaktifkan</string>
+    <string name="output_error_read_pif_prop">Gagal membaca pif.prop</string>
+    <string name="output_error_write_pif_prop">Gagal menulis pif.prop</string>
+    <string name="output_error_load_spoof_config">Gagal memuat konfigurasi spoof</string>
+    <string name="output_warning_third_party_tools">Peringatan: jangan gunakan alat pihak ketiga untuk mengambil pif.prop</string>
+    <string name="output_reset_pif_prop">Berhasil mengatur ulang pif.prop</string>
+    <string name="output_error_reset_failed">Gagal mengatur ulang pif.prop</string>
+    <string name="output_spoofVendingSdk_spoofVendingBuild">spoofVendingSdk tidak akan berpengaruh jika spoofVendingBuild diaktifkan.</string>
+    <string name="output_fetching_from_github">Mengambil pif.prop dari GitHub...</string>
+    <string name="output_error_fetching_pif_prop">Gagal mengambil pif.prop</string>
+    <string name="output_oudated_pif_prop">pif.prop kemungkinan sudah usang, pertimbangkan untuk mengambil ulang agar diperbarui.</string>
+    <string name="output_selinux_permissive">Status SELinux adalah permisif.</string>
+    <string name="output_testkey">ROM ditandatangani dengan testkey, disarankan mengaktifkan spoofSignature.</string>
+    <string name="output_releasekey">ROM ditandatangani dengan releasekey, mengaktifkan spoofSignature mungkin tidak berguna.</string>
+    <!-- Device list dialog -->
+    <string name="device_list_title">Pilih Perangkat</string>
+    <string name="device_list_random">Acak</string>
+    <string name="device_list_loading">Memuat...</string>
+    <string name="device_list_load_failed">Gagal memuat daftar perangkat</string>
+    <string name="device_list_button_cancel">Batal</string>
+    <string name="device_list_button_autopif">Autopif</string>
+    <string name="device_list_button_github">GitHub</string>
+    <!-- Help dialog -->
+    <string name="help_title">Bantuan</string>
+    <string name="help_spoof_build">Spoof build di pif.prop, aktif secara default.</string>
+    <string name="help_spoof_props">Spoof properti sistem, aktifkan jika tidak menggunakan TrickyStore.</string>
+    <string name="help_spoof_provider">Penyedia keystore kustom, aktifkan jika tidak menggunakan TrickyStore.</string>
+    <string name="help_spoof_signature">Spoof tanda tangan ROM, aktifkan jika ROM Anda ditandatangani dengan testkey. Anda dapat memeriksa tanda tangan ROM dengan menjalankan perintah ini:</string>
+    <string name="help_spoof_sdk">Spoof versi SDK ke 32 jika perangkat Anda menjalankan Android 13 atau lebih tinggi, tidak akan berpengaruh jika perangkat Anda menjalankan Android 12 atau lebih rendah. Opsi ini dapat menyebabkan ketidakstabilan, dinonaktifkan secara default.</string>
+    <string name="help_play_store">Untuk opsi dengan Play Store lakukan spoofing ke Play Store (com.android.vending), jika tidak maka spoofing ke Droidguard (com.google.android.gms.unstable).</string>
+    <string name="help_fetch_github">melalui GitHub, autopif berjalan di GitHub action sekali sehari, cepat dan andal.</string>
+    <string name="help_fetch_autopif">melalui autopif, autopif berjalan secara lokal secara real time, bisa bermasalah di beberapa perangkat.</string>
+    <string name="help_view">Lihat pif.prop aktif saat ini</string>
+    <string name="help_auto_security_patch">Sinkronkan tanggal patch keamanan di pif.prop dengan patch keamanan TrickyStore secara otomatis.</string>
+    <string name="help_script_only_mode">Nonaktifkan sementara injeksi ke Droidguard dan PlayStore, berlaku langsung. Aktifkan ini jika Anda hanya membutuhkan penanganan properti sensitif dari PIF.</string>
+    <string name="help_close">Tutup</string>
+</resources>
