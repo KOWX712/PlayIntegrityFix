@@ -75,6 +75,7 @@ android {
             version = "3.30.5+"
         }
     }
+    compileSdkMinor = 1
 }
 
 dependencies {

@@ -14,8 +14,10 @@
   "type": "module",
   "dependencies": {
     "@material/web": "^2.4.1",
-    "kernelsu-alt": "^1.0.2",
-    "vite": "^7.1.12",
+    "kernelsu-alt": "^2.1.2"
+  },
+  "devDependencies": {
+    "vite": "^7.2.4",
     "vite-plugin-html": "^3.2.2"
   }
 }
