@@ -73,28 +73,34 @@ if [ "$1" = "--list" ] || [ "$1" = "-l" ]; then
 	get_model_product_list
 fi
 
+# Get fingerprint detail
+download https://developer.android.com/topic/generic-system-image/releases PIXEL_GSI_HTML
+RELEASE="$(grep -m1 'corresponding Google Pixel builds' PIXEL_GSI_HTML | grep -o '/versions/.*' | cut -d/ -f3)"
+ID="$(grep -m1 -o 'Build:.*' PIXEL_GSI_HTML | cut -d' ' -f2)"
+INCREMENTAL="$(grep -m1 -o "$ID-.*-" PIXEL_GSI_HTML | cut -d- -f2)"
+
+# Get security patch
+download https://source.android.com/docs/security/bulletin/pixel PIXEL_SECBULL_HTML
+SECURITY_PATCH="$(grep -A15 "$(grep -m1 -o 'Security patch level:.*' PIXEL_GSI_HTML | cut -d' ' -f4-)" PIXEL_SECBULL_HTML | grep -m1 -B1 '</tr>' | grep 'td' | sed 's;.*<td>\(.*\)</td>;\1;')"
+
 # Select and configure device
 echo "- Selecting Pixel Beta device ..."
 if [ -z "$PRODUCT" ] || ! echo "$PRODUCT_LIST" | grep -q "$PRODUCT"; then
 	set_random_beta
 fi
 echo "$MODEL ($PRODUCT)"
+DEVICE=$(echo "$PRODUCT" | sed 's/_beta//')
 
-# Get device fingerprint and security patch from OTA metadata
-OTA_LINK="$(echo "$OTA_LIST" | grep "$PRODUCT")"
-if command -v curl > /dev/null 2>&1; then
-	curl --connect-timeout 10 -s "$OTA_LINK" | strings | head -n15 > PIXEL_ZIP_METADATA || download_fail "$OTA_LINK"
-else
-	busybox wget -T 10 --no-check-certificate -qO - "$OTA_LINK" | strings | head -n15 > PIXEL_ZIP_METADATA || download_fail "$OTA_LINK"
-fi
-FINGERPRINT="$(grep -am1 'post-build=' PIXEL_ZIP_METADATA | cut -d= -f2)"
-SECURITY_PATCH="$(grep -am1 'security-patch-level=' PIXEL_ZIP_METADATA | cut -d= -f2)"
+# Validate required field
+required="MODEL PRODUCT DEVICE RELEASE ID INCREMENTAL SECURITY_PATCH"
+for i in $required; do
+    eval "value=\${$i}"
+    if [ -z "$value" ]; then
+        download_fail "https://dl.google.com"
+    fi
+done
 
-# Validate required field to prevent empty pif.prop
-if [ -z "$FINGERPRINT" ] || [ -z "$SECURITY_PATCH" ]; then
-	# link to download pixel rom metadata
-	download_fail "https://dl.google.com"
-fi
+FINGERPRINT="google/$PRODUCT/$DEVICE:$RELEASE/$ID/$INCREMENTAL:user/release-keys"
 
 # Preserve previous setting
 spoofConfig="spoofBuild spoofProps spoofProvider spoofSignature spoofVendingBuild spoofVendingSdk DEBUG"

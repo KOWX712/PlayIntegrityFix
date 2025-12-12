@@ -556,8 +556,8 @@ function checkPropDate() {
         prop_epoch="$(busybox date -d "$prop_date" +%s)"
         current_epoch="$(busybox date +%s)"
         different="$(($current_epoch - $prop_epoch))"
-        if [ $different -gt 5184000 ]; then
-            # 60d * 24h * 60m * 60s = 5184000
+        if [ $different -gt 7776000 ]; then
+            # 90d * 24h * 60m * 60s = 7776000
             echo "outdated"
         fi
     `, { env: { PATH: "$PATH:/data/adb/ap/bin:/data/adb/ksu/bin:/data/adb/magisk" }}).then((result) => {
