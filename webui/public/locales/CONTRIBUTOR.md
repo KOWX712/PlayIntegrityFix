@@ -6,9 +6,10 @@
 
 ---
 
-## Bahasa Indonesia
+## Indonesian
 
 - [yourbestregard](https://github.com/yourbestregard)
+- [Neebe3289](https://github.com/Neebe3289)
 
 ---
 

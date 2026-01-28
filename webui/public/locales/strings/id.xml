@@ -4,12 +4,12 @@
     <string name="action_fetch">Ambil</string>
     <string name="action_view">Lihat</string>
     <string name="action_auto_security_patch">Patch keamanan otomatis</string>
-    <string name="action_script_only_mode">Mode skrip saja</string>
+    <string name="action_script_only_mode">Mode hanya skrip</string>
     <!-- Terminal -->
     <string name="terminal_clear">bersihkan</string>
     <!-- Terminal output -->
-    <string name="output_enabled">Diaktifkan</string>
-    <string name="output_disabled">Dinonaktifkan</string>
+    <string name="output_enabled">Mengaktifkan</string>
+    <string name="output_disabled">Menonaktifkan</string>
     <string name="output_error_enable_failed">Gagal mengaktifkan</string>
     <string name="output_error_disable_failed">Gagal menonaktifkan</string>
     <string name="output_error_read_pif_prop">Gagal membaca pif.prop</string>
@@ -35,16 +35,16 @@
     <string name="device_list_button_github">GitHub</string>
     <!-- Help dialog -->
     <string name="help_title">Bantuan</string>
-    <string name="help_spoof_build">Spoof build di pif.prop, aktif secara default.</string>
+    <string name="help_spoof_build">Spoof build di pif.prop (Diaktifkan secara default).</string>
     <string name="help_spoof_props">Spoof properti sistem, aktifkan jika tidak menggunakan TrickyStore.</string>
     <string name="help_spoof_provider">Penyedia keystore kustom, aktifkan jika tidak menggunakan TrickyStore.</string>
     <string name="help_spoof_signature">Spoof tanda tangan ROM, aktifkan jika ROM Anda ditandatangani dengan testkey. Anda dapat memeriksa tanda tangan ROM dengan menjalankan perintah ini:</string>
-    <string name="help_spoof_sdk">Spoof versi SDK ke 32 jika perangkat Anda menjalankan Android 13 atau lebih tinggi, tidak akan berpengaruh jika perangkat Anda menjalankan Android 12 atau lebih rendah. Opsi ini dapat menyebabkan ketidakstabilan, dinonaktifkan secara default.</string>
+    <string name="help_spoof_sdk">Spoof versi SDK ke 32 jika perangkat Anda menjalankan Android 13 atau lebih tinggi, tidak akan berpengaruh jika perangkat Anda menjalankan Android 12 atau lebih rendah. Opsi ini dapat menyebabkan ketidakstabilan (Dinonaktifkan secara default).</string>
     <string name="help_play_store">Untuk opsi dengan Play Store lakukan spoofing ke Play Store (com.android.vending), jika tidak maka spoofing ke Droidguard (com.google.android.gms.unstable).</string>
-    <string name="help_fetch_github">melalui GitHub, autopif berjalan di GitHub action sekali sehari, cepat dan andal.</string>
-    <string name="help_fetch_autopif">melalui autopif, autopif berjalan secara lokal secara real time, bisa bermasalah di beberapa perangkat.</string>
+    <string name="help_fetch_github">Melalui GitHub, Autopif dijalankan di GitHub action sekali sehari, cepat dan andal.</string>
+    <string name="help_fetch_autopif">Melalui Autopif, Autopif dijalankan secara lokal dan real time, bisa bermasalah di beberapa perangkat.</string>
     <string name="help_view">Lihat pif.prop aktif saat ini</string>
     <string name="help_auto_security_patch">Sinkronkan tanggal patch keamanan di pif.prop dengan patch keamanan TrickyStore secara otomatis.</string>
-    <string name="help_script_only_mode">Nonaktifkan sementara injeksi ke Droidguard dan PlayStore, berlaku langsung. Aktifkan ini jika Anda hanya membutuhkan penanganan properti sensitif dari PIF.</string>
+    <string name="help_script_only_mode">Menonaktifkan sementara injeksi ke Droidguard dan PlayStore, berlaku langsung. Aktifkan ini jika Anda hanya membutuhkan penanganan properti sensitif dari PIF.</string>
     <string name="help_close">Tutup</string>
 </resources>

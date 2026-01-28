@@ -8,8 +8,8 @@
     <!-- Terminal -->
     <string name="terminal_clear">clear</string>
     <!-- Terminal output -->
-    <string name="output_enabled">Enabled</string>
-    <string name="output_disabled">Disabled</string>
+    <string name="output_enabled">Enable</string>
+    <string name="output_disabled">Disable</string>
     <string name="output_error_enable_failed">Failed to enable</string>
     <string name="output_error_disable_failed">Failed to disable</string>
     <string name="output_error_read_pif_prop">Failed to read pif.prop</string>
@@ -35,16 +35,16 @@
     <string name="device_list_button_github">GitHub</string>
     <!-- Help dialog -->
     <string name="help_title">Help</string>
-    <string name="help_spoof_build">Spoof field in pif.prop, enabled by default.</string>
+    <string name="help_spoof_build">Spoof field in pif.prop (Enabled by default).</string>
     <string name="help_spoof_props">Spoof system properties, enable when not using TrickyStore.</string>
     <string name="help_spoof_provider">Custom keystore provider, enable when not using TrickyStore.</string>
-    <string name="help_spoof_signature">Spoof rom signature, enable when your rom is signed by testkey. You can check your rom signature by running this command:</string>
-    <string name="help_spoof_sdk">Spoof sdk version to 32 if your device runs Android 13 or higher, it will not take effect if your device is running Android 12 or lower. This option can cause instability, disable by default.</string>
+    <string name="help_spoof_signature">Spoof ROM signature, enable when your ROM is signed by testkey. You can check your ROM signature by running this command:</string>
+    <string name="help_spoof_sdk">Spoof SDK version to 32 if your device runs Android 13 or higher, it will not take effect if your device is running Android 12 or lower. This option can cause instability (Disabled by default).</string>
     <string name="help_play_store">For option with Play Store do spoofing to Play Store (com.android.vending), else spoofing to Droidguard (com.google.android.gms.unstable).</string>
-    <string name="help_fetch_github">via GitHub, autopif run in GitHub action once a day, fast and reliable.</string>
-    <string name="help_fetch_autopif">via autopif, autopif run locally in real time, could be problematic in some devices.</string>
+    <string name="help_fetch_github">Via GitHub, Autopif run in GitHub action once a day, fast and reliable.</string>
+    <string name="help_fetch_autopif">Via Autopif, Autopif run locally in real time, could be problematic in some devices.</string>
     <string name="help_view">View current active pif.prop</string>
-    <string name="help_auto_security_patch">Sync secuirty patch date in pif.prop with TrickyStore security patch automatically.</string>
+    <string name="help_auto_security_patch">Sync security patch date in pif.prop with TrickyStore security patch automatically.</string>
     <string name="help_script_only_mode">Temporary disable injection to Droidguard and PlayStore, take effect immediately. Enable this when you only need sensitive prop handling from PIF.</string>
     <string name="help_close">Close</string>
 </resources>
