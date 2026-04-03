@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Action button -->
+    <string name="action_fetch">Pobierz</string>
+    <string name="action_view">Pokaż</string>
+    <string name="action_auto_security_patch">Automatyczna poprawka zabezpieczeń</string>
+    <string name="action_script_only_mode">Tryb tylko skryptu</string>
+    <!-- Terminal -->
+    <string name="terminal_clear">wyczyść</string>
+    <!-- Terminal output -->
+    <string name="output_enabled">Włączono</string>
+    <string name="output_disabled">Wyłączono</string>
+    <string name="output_error_enable_failed">Nie udało się włączyć</string>
+    <string name="output_error_disable_failed">Nie udało się wyłączyć</string>
+    <string name="output_error_read_pif_prop">Nie udało się odczytać pif.prop</string>
+    <string name="output_error_write_pif_prop">Nie udało się zapisać pif.prop</string>
+    <string name="output_error_load_spoof_config">Nie udało się wczytać konfiguracji spoofowania</string>
+    <string name="output_warning_third_party_tools">Ostrzeżenie: nie używaj narzędzi firm trzecich do pobierania pif.prop</string>
+    <string name="output_reset_pif_prop">Pomyślnie zresetowano pif.prop</string>
+    <string name="output_error_reset_failed">Nie udało się zresetować pif.prop</string>
+    <string name="output_spoofVendingSdk_spoofVendingBuild">spoofVendingSdk nie zadziała, gdy włączone jest spoofVendingBuild.</string>
+    <string name="output_fetching_from_github">Pobieranie pif.prop z GitHub...</string>
+    <string name="output_error_fetching_pif_prop">Nie udało się pobrać pif.prop</string>
+    <string name="output_oudated_pif_prop">pif.prop jest prawdopodobnie nieaktualny, rozważ jednorazowe pobranie, aby go zaktualizować.</string>
+    <string name="output_selinux_permissive">Status SELinux jest ustawiony na permissive.</string>
+    <string name="output_testkey">ROM podpisany testowymi kluczami, zalecane jest włączenie spoofSignature.</string>
+    <string name="output_releasekey">ROM podpisany produkcyjnymi kluczami, włączenie spoofSignature może nie być przydatne.</string>
+    <!-- Device list dialog -->
+    <string name="device_list_title">Wybierz urządzenie</string>
+    <string name="device_list_random">Losowe</string>
+    <string name="device_list_loading">Ładowanie...</string>
+    <string name="device_list_load_failed">Nie udało się wczytać listy urządzeń</string>
+    <string name="device_list_button_cancel">Anuluj</string>
+    <string name="device_list_button_autopif">Autopif</string>
+    <string name="device_list_button_github">GitHub</string>
+    <!-- Help dialog -->
+    <string name="help_title">Pomoc</string>
+    <string name="help_spoof_build">Spoof pola w pif.prop (domyślnie włączone).</string>
+    <string name="help_spoof_props">Spoof właściwości systemowe, włącz gdy nie używasz TrickyStore.</string>
+    <string name="help_spoof_provider">Niestandardowy dostawca keystore, włącz gdy nie używasz TrickyStore.</string>
+    <string name="help_spoof_signature">Spoof podpisu ROM, włącz gdy Twój ROM jest podpisany testowymi kluczami. Możesz sprawdzić podpis ROM-u tym poleceniem:</string>
+    <string name="help_spoof_sdk">Spoof wersji SDK do 32, jeśli Twoje urządzenie działa na Androidzie 13 lub nowszym; nie zadziała na Androidzie 12 lub starszym. Ta opcja może powodować niestabilność (domyślnie wyłączona).</string>
+    <string name="help_play_store">Dla opcji z Play Store spoof jest stosowany do Play Store (com.android.vending), w przeciwnym razie do Droidguard (com.google.android.gms.unstable).</string>
+    <string name="help_fetch_github">Przez GitHub, Autopif uruchamia się w GitHub Actions raz dziennie, szybko i niezawodnie.</string>
+    <string name="help_fetch_autopif">Przez Autopif, Autopif uruchamia się lokalnie w czasie rzeczywistym, co na niektórych urządzeniach może powodować problemy.</string>
+    <string name="help_view">Pokaż aktualnie aktywny pif.prop</string>
+    <string name="help_auto_security_patch">Automatycznie synchronizuj datę poprawki zabezpieczeń w pif.prop z poprawką zabezpieczeń TrickyStore.</string>
+    <string name="help_script_only_mode">Tymczasowo wyłącza wstrzykiwanie do Droidguard i Play Store, działa natychmiast. Włącz to, gdy potrzebujesz tylko obsługi wrażliwych właściwości z PIF.</string>
+    <string name="help_close">Zamknij</string>
+</resources>

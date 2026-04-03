@@ -31,7 +31,12 @@
 
 ---
 
+## Polish
+
+- [marcinmajsc](https://github.com/marcinmajsc)
+
+---
+
 ## Turkish
 
 - [DogancanYr](https://github.com/DogancanYr)
-
