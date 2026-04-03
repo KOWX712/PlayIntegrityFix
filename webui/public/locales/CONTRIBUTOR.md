@@ -6,13 +6,6 @@
 
 ---
 
-## Indonesian
-
-- [yourbestregard](https://github.com/yourbestregard)
-- [Neebe3289](https://github.com/Neebe3289)
-
----
-
 ## Chinese (Simplified)
 
 - [KOWX712](https://github.com/KOWX712)
@@ -28,6 +21,13 @@
 ## English
 
 - [KOWX712](https://github.com/KOWX712)
+
+---
+
+## Indonesian
+
+- [yourbestregard](https://github.com/yourbestregard)
+- [Neebe3289](https://github.com/Neebe3289)
 
 ---
 
