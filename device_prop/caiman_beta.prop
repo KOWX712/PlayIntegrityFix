@@ -1,4 +1,4 @@
-FINGERPRINT=google/caiman_beta/caiman:CANARY/ZP11.260320.007/15154667:user/release-keys
+FINGERPRINT=google/caiman_beta/caiman:CANARY/ZP11.260417.009/15372612:user/release-keys
 MANUFACTURER=Google
 MODEL=Pixel 9 Pro
-SECURITY_PATCH=2026-04-05
+SECURITY_PATCH=2026-05-05
