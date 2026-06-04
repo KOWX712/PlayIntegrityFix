@@ -1,4 +1,4 @@
-FINGERPRINT=google/comet_beta/comet:CANARY/ZP11.260417.009/15372612:user/release-keys
+FINGERPRINT=google/comet_beta/comet:CANARY/ZP11.260515.009/15513807:user/release-keys
 MANUFACTURER=Google
 MODEL=Pixel 9 Pro Fold
-SECURITY_PATCH=2026-05-05
+SECURITY_PATCH=2026-06-05
