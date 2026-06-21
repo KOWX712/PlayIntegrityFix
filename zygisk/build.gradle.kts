@@ -7,6 +7,7 @@ plugins {
 }
 
 tasks.register("generateModulePropChecksum") {
+    description = "Generate Module Checksum"
     val propFile = project.rootDir.resolve("module/module.prop")
     val checksumHeader = project.projectDir.resolve("src/main/cpp/checksum.h")
 
@@ -29,7 +30,7 @@ tasks.named("preBuild") {
 
 android {
     namespace = "es.chiteroman.playintegrityfix"
-    compileSdk = 36
+    compileSdk = 37
     ndkVersion = "29.0.14206865"
     buildToolsVersion = "36.1.0"
 
@@ -84,6 +85,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             multiDexEnabled = false
             proguardFiles += file("proguard-rules.pro")
         }

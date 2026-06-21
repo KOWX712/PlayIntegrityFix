@@ -27,14 +27,14 @@ jobs:
         java-version: 21
 
     - name: Setup pnpm
-      uses: pnpm/action-setup@v5
+      uses: pnpm/action-setup@v6
       with:
         version: 'latest'
 
     - name: Setup Node
       uses: actions/setup-node@v6
       with:
-        node-version: 'latest'
+        node-version: 'lts/*'
         cache: 'pnpm'
         cache-dependency-path: webui/pnpm-lock.yaml
 

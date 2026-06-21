@@ -4,6 +4,7 @@ plugins {
 }
 
 tasks.register("copyZygiskFiles") {
+    description = "Copy Zygisk Files"
     val moduleFolder = project.rootDir.resolve("module")
     val zygiskModule = project.project(":zygisk")
     val zygiskBuildDir = zygiskModule.layout.buildDirectory
@@ -28,6 +29,7 @@ tasks.register("copyZygiskFiles") {
 }
 
 tasks.register<Zip>("zip") {
+    description = "Zip Module"
     dependsOn("copyZygiskFiles")
 
     archiveFileName.set("PlayIntegrityFix.zip")
