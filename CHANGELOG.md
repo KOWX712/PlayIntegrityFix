@@ -2,6 +2,12 @@
 
 Play Integrity Fix [INJECT] - fork by KOWX712
 
+## v4.6
+
+- Android 17 support.
+- Improve method to find Zygisk provider module
+- WebUI new language: Polish (@marcinmajsc, #12)
+
 ## v4.5
 
 - Inline inject logic and stream payload over companion to avoid detection.
