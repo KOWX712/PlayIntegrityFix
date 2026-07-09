@@ -14,4 +14,3 @@ local.properties
 .vscode
 checksum.h
 module/webroot
-webui/node_modules
