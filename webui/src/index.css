@@ -51,7 +51,7 @@
 
 body {
   margin: 0;
-  background: var(--md-sys-color-surface);
+  background: var(--md-sys-color-surface-container-low);
   color: var(--md-sys-color-on-surface);
 }
 
@@ -61,4 +61,12 @@ body {
   flex-direction: column;
 }
 
+md-assist-chip {
+  --md-assist-chip-elevated-container-shadow-color: #00000000;
+  --md-sys-color-on-surface: var(--md-sys-color-on-secondary-container);
+  --md-sys-color-surface-container-low: var(--md-sys-color-secondary-container);
+}
+
+md-filter-chip {
+  --md-sys-color-primary: var(--md-sys-color-on-surface-variant);
 }
