@@ -32,7 +32,7 @@ android {
     namespace = "es.chiteroman.playintegrityfix"
     compileSdk = 37
     ndkVersion = "29.0.14206865"
-    buildToolsVersion = "36.1.0"
+    buildToolsVersion = "37.0.0"
 
     buildFeatures {
         prefab = true
@@ -102,6 +102,7 @@ android {
             version = "3.30.5+"
         }
     }
+    compileSdkMinor = 1
 }
 
 dependencies {
