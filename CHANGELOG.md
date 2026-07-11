@@ -2,6 +2,11 @@
 
 Play Integrity Fix [INJECT] - fork by KOWX712
 
+## v4.7
+
+- Fix resetprop command for KernelSU.
+- Rework WebUI, use cdn approach to fetch GitHub resource to avoid `429 too many request`.
+
 ## v4.6
 
 - Android 17 support.
