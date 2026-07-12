@@ -2,7 +2,7 @@ import { Terminal } from './Terminal'
 import { PifConfig } from './PifConfig'
 import { Cli } from './Cli'
 import { File } from './File'
-import { MODDIR, GITHUB_CDN, GITHUB_RAW, GITHUB_MIRROR } from '../constant'
+import { MODDIR, GITHUB_CDN, GITHUB_RAW, GITHUB_MIRROR, AUTO_SECURITY_PATCH_FLAG } from '../constant'
 import { fallbackFetch } from './fetch'
 import { i18n } from './I18n'
 import type { DeviceInfo } from '../types'
@@ -54,11 +54,12 @@ export class Update {
 
       // security_patch.sh
       const TS_DIR = '/data/adb/modules/tricky_store'
-      const [tsDir, tsDisabled] = await Promise.all([
+      const [tsDir, tsDisabled, autoPatch] = await Promise.all([
         File.isDirectory(TS_DIR),
         File.exist(`${TS_DIR}/disable`),
+        File.exist(AUTO_SECURITY_PATCH_FLAG)
       ])
-      if (tsDir && !tsDisabled) {
+      if (tsDir && !tsDisabled && autoPatch) {
         await Cli.runSecurityPatch()
       } else {
         await File.delete(`${MODDIR}/system.prop`).catch(() => {})
