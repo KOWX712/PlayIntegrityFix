@@ -210,13 +210,6 @@ public final class EntryPoint {
         map.forEach((field, value) -> {
             try {
                 field.setAccessible(true);
-                try {
-                    Field accessFlagsField = Field.class.getDeclaredField("accessFlags");
-                    accessFlagsField.setAccessible(true);
-                    accessFlagsField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-                } catch (NoSuchFieldException | IllegalAccessException e) {
-                    Log.w(TAG, "Couldn't modify accessFlags for '" + field.getName() + "': " + e);
-                }
                 String oldValue = (String) field.get(null);
                 if (value.equals(oldValue)) {
                     field.setAccessible(false);
