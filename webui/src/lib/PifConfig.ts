@@ -61,13 +61,7 @@ export class PifConfig {
       this.#config = { ...this.#config, ...newMap }
     }
     const mergedProp = PROP.stringify(this.#config)
-    const files = await this.#findPifFiles()
-    for (const file of files) {
-      await File.write(file, mergedProp)
-    }
-    if (files.length === 0) {
-      await File.write(PIF_PROP_DEFAULT_PATH, mergedProp)
-    }
+    await File.write(PIF_PROP_CUSTOM_PATH, mergedProp)
   }
 
   /**
@@ -127,13 +121,5 @@ export class PifConfig {
       const msg = error instanceof Error ? error.message : String(error)
       this.#terminal.output('[!] ' + i18n.t('output_error_reset_failed') + ': ' + msg, true)
     }
-  }
-
-  async #findPifFiles(): Promise<string[]> {
-    const files: string[] = [PIF_PROP_DEFAULT_PATH]
-    if (await File.exist(PIF_PROP_CUSTOM_PATH)) {
-      files.push(PIF_PROP_CUSTOM_PATH)
-    }
-    return files
   }
 }
