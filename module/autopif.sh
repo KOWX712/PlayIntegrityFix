@@ -112,9 +112,11 @@ if [ -z "$SECURITY_PATCH" ]; then
 fi
 
 # Preserve previous setting
+pifProp="$MODDIR/pif.prop"
+[ -f "/data/adb/pif.prop" ] && pifProp="/data/adb/pif.prop"
 spoofConfig="spoofBuild spoofProps spoofProvider spoofSignature spoofVendingBuild spoofVendingSdk DEBUG"
 for config in $spoofConfig; do
-	if grep -q "$config=true" "$MODDIR/pif.prop"; then
+	if grep -q "$config=true" "$pifProp"; then
 		eval "$config=true"
 	else
 		eval "$config=false"

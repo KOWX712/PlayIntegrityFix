@@ -60,25 +60,8 @@ if [ -d "/data/adb/modules/MagiskHidePropsConf" ]; then
 fi
 
 # Preserve previous setting
-if [ -f "/data/adb/modules/playintegrityfix/pif.prop" ]; then
-    spoofConfig="spoofBuild spoofProps spoofProvider spoofSignature spoofVendingBuild spoofVendingSdk"
-    for config in $spoofConfig; do
-        grep -q "$config" "/data/adb/modules/playintegrityfix/pif.prop" || continue
-        if grep -q "$config=true" "/data/adb/modules/playintegrityfix/pif.prop"; then
-            sed -i "s/$config=.*/$config=true/" "$MODPATH/pif.prop"
-        else
-            sed -i "s/$config=.*/$config=false/" "$MODPATH/pif.prop"
-        fi
-    done
-fi
 if [ -f "/data/adb/modules/playintegrityfix/system.prop" ]; then
     cp -af /data/adb/modules/playintegrityfix/system.prop "$MODPATH/system.prop"
-fi
-
-# Check custom fingerprint
-if [ -f "/data/adb/pif.prop" ]; then
-    ui_print "- Backup custom pif.prop"
-    mv -f /data/adb/pif.prop /data/adb/pif.prop.old
 fi
 
 # give exec perm to autopif.sh
