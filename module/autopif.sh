@@ -60,9 +60,9 @@ LATEST_URL=$(grep -o 'https://developer.android.com/about/versions/.*[0-9]"' PIX
 download "$LATEST_URL" PIXEL_LATEST_HTML
 
 # Get FI and OTA information and use the longer device list
-FI_URL="https://developer.android.com$(grep -o 'href=".*download.*"' PIXEL_LATEST_HTML | grep 'qpr' | cut -d\" -f2 | sort -ru | head -n1)"
+FI_URL="https://developer.android.com$(grep -o 'href=".*download.*"' PIXEL_LATEST_HTML | cut -d\" -f2 | sort -ru | head -n1)"
 download "$FI_URL" PIXEL_FI_HTML
-OTA_URL="https://developer.android.com$(grep -o 'href=".*download-ota.*"' PIXEL_LATEST_HTML | grep 'qpr' | cut -d\" -f2 | sort -ru | head -n1)"
+OTA_URL="https://developer.android.com$(grep -o 'href=".*download-ota.*"' PIXEL_LATEST_HTML | cut -d\" -f2 | sort -ru | head -n1)"
 download "$OTA_URL" PIXEL_OTA_HTML
 SRC=FI; [ "$(grep 'tr id=' PIXEL_FI_HTML | sed 's;.*<tr id="\(.*\)">.*;\1;' | wc -w)" -lt "$(grep 'tr id=' PIXEL_OTA_HTML | sed 's;.*<tr id="\(.*\)">.*;\1;' | wc -w)" ] && SRC=OTA
 
