@@ -62,21 +62,5 @@
   {
     "model": "Pixel 9a",
     "product": "tegu_beta"
-  },
-  {
-    "model": "Pixel 10",
-    "product": "frankel_beta"
-  },
-  {
-    "model": "Pixel 10 Pro",
-    "product": "blazer_beta"
-  },
-  {
-    "model": "Pixel 10 Pro XL",
-    "product": "mustang_beta"
-  },
-  {
-    "model": "Pixel 10 Pro Fold",
-    "product": "rango_beta"
   }
 ]
