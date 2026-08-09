@@ -140,3 +140,13 @@ jobs:
         else
           git commit -m "update device list" && git push
         fi
+
+    - name: Purge jsdelivr cache
+      run: |
+        echo "Purging jsdelivr cache for updated files..."
+        curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@bot/device_list.json" || echo "Failed to purge cache for device_list.json"
+        for prop_file in device_prop/*.prop; do
+          [ -f "$prop_file" ] || continue
+          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@bot/$prop_file" || echo "Failed to purge cache for $prop_file"
+        done
+        echo "Cache purge complete"
