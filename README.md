@@ -14,7 +14,7 @@ You will need root and Zygisk. Enable Magisk's built-in Zygisk or use [ZygiskNex
 
 - **spoofBuild**: spoof fingerprint field, enabled by default.
 - **spoofProvider**: custom keystore provider, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore).
-- **spoofProps**: spoof prop when gms read from sytem prop, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore).
+- **spoofProps**: spoof prop when gms read from system prop, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore).
 - **spoofSignature**: spoof rom signature, enable when your rom is signed by testkey. You can check your rom signature by running this command in terminal.
   ```sh
   unzip -l /system/etc/security/otacerts.zip | grep -oE "testkey|releasekey"
@@ -42,7 +42,7 @@ You will need root and Zygisk. Enable Magisk's built-in Zygisk or use [ZygiskNex
 
 ### About official PIF by chiteroman
 
-- The [offical PIF by chiteroman](https://github.com/chiteroman/PlayIntegrityFix) has been removed from GitHub.
+- The [official PIF by chiteroman](https://github.com/chiteroman/PlayIntegrityFix) has been removed from GitHub.
   - Official untouched main branch: https://github.com/KOWX712/PlayIntegrityFix/tree/main
   - Official untouched inject branch: https://github.com/KOWX712/PlayIntegrityFix/tree/inject
   - All tags from the official PIF repo are also preserved in this repo.
