@@ -13,8 +13,8 @@ You will need root and Zygisk. Enable Magisk's built-in Zygisk or use [ZygiskNex
 ## Options
 
 - **spoofBuild**: spoof fingerprint field, enabled by default.
-- **spoofProvider**: custom keystore provider, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore).
-- **spoofProps**: spoof prop when gms read from system prop, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore).
+- **spoofProvider**: custom keystore provider, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore) or [TEESimulator](https://github.com/JingMatrix/TEESimulator).
+- **spoofProps**: spoof prop when gms read from system prop, enable when not using [TrickyStore](https://github.com/5ec1cff/TrickyStore) or [TEESimulator](https://github.com/JingMatrix/TEESimulator).
 - **spoofSignature**: spoof rom signature, enable when your rom is signed by testkey. You can check your rom signature by running this command in terminal.
   ```sh
   unzip -l /system/etc/security/otacerts.zip | grep -oE "testkey|releasekey"

@@ -36,8 +36,8 @@
     <!-- Help dialog -->
     <string name="help_title">مساعدة</string>
     <string name="help_spoof_build">تزوير الحقل الخاص بالبنية في pif.prop، مفعل افتراضيًا.</string>
-    <string name="help_spoof_props">تزوير خصائص النظام، فعّله إذا لم تستخدم TrickyStore.</string>
-    <string name="help_spoof_provider">مزوّد مخزن المفاتيح المخصص، فعّله إذا لم تستخدم TrickyStore.</string>
+    <string name="help_spoof_props">تزوير خصائص النظام، فعّله إذا لم تستخدم TrickyStore أو TEESimulator.</string>
+    <string name="help_spoof_provider">مزوّد مخزن المفاتيح المخصص، فعّله إذا لم تستخدم TrickyStore أو TEESimulator.</string>
     <string name="help_spoof_signature">تزوير توقيع الروم، فعّله عندما يكون الروم الخاص بك موقّعًا بـ testkey. يمكنك التحقق من توقيع الروم بتشغيل الأمر التالي:</string>
     <string name="help_spoof_sdk">تزوير رقم SDK إلى 32 إذا كان جهازك يعمل أندرويد 13 أو أعلى؛ لن يأخذ هذا التأثير إذا كان جهازك يعمل أندرويد 12 أو أقل. قد يتسبب هذا الخيار في مشاكل تتعلق بالإستقرار، لذا فهو معطّل افتراضيًا.</string>
     <string name="help_play_store">بالنسبة لخيارات متجر Play، قم بالتزييف لمتجر Play (com.android.vending)، وإلا فقم بالتزييف إلى DroidGuard (com.google.android.gms.unstable).</string>

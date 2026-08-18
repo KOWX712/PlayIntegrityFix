@@ -36,8 +36,8 @@
     <!-- Help dialog -->
     <string name="help_title">Pomoc</string>
     <string name="help_spoof_build">Spoof pola w pif.prop (domyślnie włączone).</string>
-    <string name="help_spoof_props">Spoof właściwości systemowe, włącz gdy nie używasz TrickyStore.</string>
-    <string name="help_spoof_provider">Niestandardowy dostawca keystore, włącz gdy nie używasz TrickyStore.</string>
+    <string name="help_spoof_props">Spoof właściwości systemowe, włącz gdy nie używasz TrickyStore lub TEESimulator.</string>
+    <string name="help_spoof_provider">Niestandardowy dostawca keystore, włącz gdy nie używasz TrickyStore lub TEESimulator.</string>
     <string name="help_spoof_signature">Spoof podpisu ROM, włącz gdy Twój ROM jest podpisany testowymi kluczami. Możesz sprawdzić podpis ROM-u tym poleceniem:</string>
     <string name="help_spoof_sdk">Spoof wersji SDK do 32, jeśli Twoje urządzenie działa na Androidzie 13 lub nowszym; nie zadziała na Androidzie 12 lub starszym. Ta opcja może powodować niestabilność (domyślnie wyłączona).</string>
     <string name="help_play_store">Dla opcji z Play Store spoof jest stosowany do Play Store (com.android.vending), w przeciwnym razie do Droidguard (com.google.android.gms.unstable).</string>
