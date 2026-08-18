@@ -11,6 +11,7 @@
 #define DEX_PATH "/data/adb/modules/playintegrityfix/classes.dex"
 
 #define TS_PATH "/data/adb/modules/tricky_store"
+#define TEE_PATH "/data/adb/modules/teesim"
 
 #define DEFAULT_JSON "/data/adb/modules/playintegrityfix/pif.json"
 #define CUSTOM_JSON_FORK "/data/adb/modules/playintegrityfix/custom.pif.json"
@@ -185,8 +186,8 @@ public:
             json = nlohmann::json::parse(jsonStr, nullptr, false, true);
         }
 
-        bool trickyStore = false;
-        xread(fd, &trickyStore, sizeof(bool));
+        bool teeBackend = false;
+        xread(fd, &teeBackend, sizeof(bool));
 
         bool testSignedRom = false;
         xread(fd, &testSignedRom, sizeof(bool));
@@ -198,8 +199,8 @@ public:
 
         parseJSON();
 
-        if (trickyStore) {
-            LOGD("TrickyStore module detected!");
+        if (teeBackend) {
+            LOGD("TrickyStore or TEESimulator module detected!");
             spoofProvider = false;
             spoofProps = false;
         }
@@ -492,11 +493,17 @@ static void companion(int fd) {
         xwrite(fd, json.data(), jsonSize);
     }
 
-    std::string ts(TS_PATH);
-    bool trickyStore = std::filesystem::exists(ts) &&
-                       !std::filesystem::exists(ts + "/disable") &&
-                       !std::filesystem::exists(ts + "/remove");
-    xwrite(fd, &trickyStore, sizeof(bool));
+    auto moduleActive = [](const std::string &path) {
+        return std::filesystem::exists(path) &&
+               !std::filesystem::exists(path + "/disable") &&
+               !std::filesystem::exists(path + "/remove");
+    };
+    // A hardware-attestation backend (TrickyStore or TEESimulator) already
+    // provides a valid keystore verdict, so PIF must stand down its own
+    // keystore-provider and property spoofing to avoid a redundant, detectable
+    // injection layered on top.
+    bool teeBackend = moduleActive(TS_PATH) || moduleActive(TEE_PATH);
+    xwrite(fd, &teeBackend, sizeof(bool));
 
     bool testSignedRom = checkOtaZip();
     xwrite(fd, &testSignedRom, sizeof(bool));
