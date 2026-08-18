@@ -36,8 +36,8 @@
     <!-- Help dialog -->
     <string name="help_title">Bantuan</string>
     <string name="help_spoof_build">Spoof build di pif.prop (Diaktifkan secara default).</string>
-    <string name="help_spoof_props">Spoof properti sistem, aktifkan jika tidak menggunakan TrickyStore.</string>
-    <string name="help_spoof_provider">Penyedia keystore kustom, aktifkan jika tidak menggunakan TrickyStore.</string>
+    <string name="help_spoof_props">Spoof properti sistem, aktifkan jika tidak menggunakan TrickyStore atau TEESimulator.</string>
+    <string name="help_spoof_provider">Penyedia keystore kustom, aktifkan jika tidak menggunakan TrickyStore atau TEESimulator.</string>
     <string name="help_spoof_signature">Spoof tanda tangan ROM, aktifkan jika ROM Anda ditandatangani dengan testkey. Anda dapat memeriksa tanda tangan ROM dengan menjalankan perintah ini:</string>
     <string name="help_spoof_sdk">Spoof versi SDK ke 32 jika perangkat Anda menjalankan Android 13 atau lebih tinggi, tidak akan berpengaruh jika perangkat Anda menjalankan Android 12 atau lebih rendah. Opsi ini dapat menyebabkan ketidakstabilan (Dinonaktifkan secara default).</string>
     <string name="help_play_store">Untuk opsi dengan Play Store lakukan spoofing ke Play Store (com.android.vending), jika tidak maka spoofing ke Droidguard (com.google.android.gms.unstable).</string>

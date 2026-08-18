@@ -36,8 +36,8 @@
     <!-- Help dialog -->
     <string name="help_title">Yardım</string>
     <string name="help_spoof_build">Pif.prop\'ta sahte alan, varsayılan olarak etkindir.</string>
-    <string name="help_spoof_props">Sistem özelliklerini kandır, TrickyStore kullanılmadığında etkinleştirilir.</string>
-    <string name="help_spoof_provider">Özel keystore sağlayıcısı, TrickyStore\'u kullanmadığınızda etkinleştirin.</string>
+    <string name="help_spoof_props">Sistem özelliklerini kandır, TrickyStore veya TEESimulator kullanılmadığında etkinleştirilir.</string>
+    <string name="help_spoof_provider">Özel keystore sağlayıcısı, TrickyStore veya TEESimulator\'ı kullanmadığınızda etkinleştirin.</string>
     <string name="help_spoof_signature">Sahte rom imzası, romunuz testkey tarafından imzalandığında etkinleştirin. Bu komutu çalıştırarak rom imzanızı kontrol edebilirsiniz:</string>
     <string name="help_spoof_sdk">Cihazınız Android 13 veya daha yüksek bir sürüm çalıştırıyorsa 32 \'ye kadar olan sahte sdk sürümü, cihazınız Android 12 veya daha düşük bir sürüm çalıştırıyorsa etkili olmaz. Bu seçenek dengesizliğe neden olabilir, varsayılan olarak devre dışıdır.</string>
     <string name="help_play_store">Play Store seçeneği için Play Store’u (com.android.vending) taklit et; aksi takdirde DroidGuard’ı (com.google.android.gms.unstable) taklit et.</string>

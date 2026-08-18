@@ -36,8 +36,8 @@
     <!-- Help dialog -->
     <string name="help_title">帮助</string>
     <string name="help_spoof_build">伪装来自 pif.prop 的属性，默认启用。</string>
-    <string name="help_spoof_props">伪装系统 prop，不使用 TrickyStore 时启用。</string>
-    <string name="help_spoof_provider">自定义 keystore 提供程序，不使用 TrickyStore 时启用。</string>
+    <string name="help_spoof_props">伪装系统 prop，不使用 TrickyStore 或 TEESimulator 时启用。</string>
+    <string name="help_spoof_provider">自定义 keystore 提供程序，不使用 TrickyStore 或 TEESimulator 时启用。</string>
     <string name="help_spoof_signature">伪装 ROM 签名，当您的 ROM 由 testkey 签名时启用。您可以通过运行此命令检查您的 ROM 签名：</string>
     <string name="help_spoof_sdk">如果您的设备运行 Android 13 或更高版本，则将 SDK 版本伪装为 32，如果您的设备运行 Android 12 或更低版本，则该选项不会生效。此选项可能会导致不稳定，默认禁用。</string>
     <string name="help_play_store">有 Play Store 标签的选项会对 Play Store（com.android.vending）进行伪装， 否则对 Droidguard（com.google.android.gms.unstable）进行伪装。</string>
