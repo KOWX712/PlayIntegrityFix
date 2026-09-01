@@ -6,6 +6,11 @@ on:
     paths-ignore:
       - '**.md'
       - '.github/workflows/autopif.yml'
+  pull_request:
+    branches: inject_s
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/autopif.yml'
   workflow_dispatch:
 
 jobs:
