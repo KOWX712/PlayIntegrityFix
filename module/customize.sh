@@ -68,6 +68,11 @@ fi
 chmod +x "$MODPATH/autopif.sh"
 chmod +x "$MODPATH/autopif_ota.sh"
 
+# Android 10 and below need explicit zygote tmpfs permissions
+if [ "$API" -lt 30 ]; then
+    echo "allow zygote tmpfs file { read write map execute }" >> "$MODPATH/sepolicy.rule"
+fi
+
 # Clean up
 for pkg in com.google.android.gms com.android.vending; do
     for dir in "/data/user_de/0/$pkg" "/data/data/$pkg"; do
