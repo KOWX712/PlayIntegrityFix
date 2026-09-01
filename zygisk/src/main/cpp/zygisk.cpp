@@ -1,7 +1,7 @@
 #include "zygisk.hpp"
 #include "checksum.h"
-#include "Dobby/include/dobby.h"
 #include "pif_config.hpp"
+#include "property_virtualizer.hpp"
 
 #include <algorithm>
 #include <android/log.h>
@@ -36,10 +36,6 @@ JNIEnv *gEnv = nullptr;
 pif::Config gConfig;
 std::vector<uint8_t> gDexBytes;
 
-using T_Callback = void (*)(void *, const char *, const char *, uint32_t);
-
-T_Callback o_callback = nullptr;
-void (*o_system_property_read_callback)(prop_info *, T_Callback, void *) = nullptr;
 
 ssize_t xread(int fd, void *buffer, size_t countToRead) {
     ssize_t totalRead = 0;
@@ -236,62 +232,6 @@ std::string propMapToJson() {
     }
     json += "}";
     return json;
-}
-
-void modifyCallback(void *cookie, const char *name, const char *value, uint32_t serial) {
-    if (!cookie || !name || !value || !o_callback) {
-        return;
-    }
-
-    const char *oldValue = value;
-    const std::string_view prop(name);
-
-    if (prop == "init.svc.adbd") {
-        value = "stopped";
-    } else if (prop == "sys.usb.state") {
-        value = "mtp";
-    } else if (prop.ends_with("api_level")) {
-        if (!gConfig.deviceInitialSdkInt.empty()) {
-            value = gConfig.deviceInitialSdkInt.c_str();
-        }
-    } else if (prop.ends_with(".security_patch")) {
-        if (!gConfig.securityPatch.empty()) {
-            value = gConfig.securityPatch.c_str();
-        }
-    } else if (prop.ends_with(".build.id")) {
-        if (!gConfig.buildId.empty()) {
-            value = gConfig.buildId.c_str();
-        }
-    }
-
-    if (strcmp(oldValue, value) == 0) {
-        if (gConfig.debug) {
-            LOGD("[%s]: %s (unchanged)", name, oldValue);
-        }
-    } else {
-        LOGD("[%s]: %s -> %s", name, oldValue, value);
-    }
-
-    o_callback(cookie, name, value, serial);
-}
-
-void systemPropertyReadCallback(prop_info *pi, T_Callback callback, void *cookie) {
-    if (pi && callback && cookie) {
-        o_callback = callback;
-    }
-    o_system_property_read_callback(pi, modifyCallback, cookie);
-}
-
-bool doHook() {
-    void *ptr = DobbySymbolResolver(nullptr, "__system_property_read_callback");
-    if (ptr && DobbyHook(ptr, reinterpret_cast<void *>(systemPropertyReadCallback),
-                         reinterpret_cast<void **>(&o_system_property_read_callback)) == 0) {
-        LOGD("hook __system_property_read_callback successful at %p", ptr);
-        return true;
-    }
-
-    LOGE("hook __system_property_read_callback failed!");
-    return false;
 }
 
 void doSpoofVending() {
@@ -559,6 +499,11 @@ public:
         payloadLoaded = requestPayload(api->connectCompanion());
         if (!payloadLoaded) {
             api->setOption(DLCLOSE_MODULE_LIBRARY);
+            return;
+        }
+
+        if (isGmsUnstable && gConfig.spoofProps && !pif::property_virtualizer::install(gConfig)) {
+            LOGE("[PROP-VIRT] unavailable; property spoofing disabled for this process");
         }
     }
 
@@ -580,9 +525,6 @@ public:
                 LOGD("[INJECT] Dex payload skipped because spoofProvider and spoofSignature are false");
             }
 
-            if (gConfig.spoofProps) {
-                doHook();
-            }
         } else if (isVending) {
             if (gConfig.spoofVendingBuild) {
                 updateBuildFields();
