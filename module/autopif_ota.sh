@@ -3,6 +3,13 @@
 PATH=/data/adb/ap/bin:/data/adb/ksu/bin:/data/adb/magisk:/data/data/com.termux/files/usr/bin:$PATH
 MODDIR=/data/adb/modules/playintegrityfix
 
+REPOSITORY="KOWX712/PlayIntegrityFix"
+BRANCH="inject_s"
+AUTOPIF_PATH="$BRANCH/module/autopif.sh"
+GITHUB_CDN="https://fastly.jsdelivr.net/gh/$REPOSITORY"
+GITHUB_RAW="https://raw.githubusercontent.com/$REPOSITORY"
+GITHUB_MIRROR="https://gh.sevencdn.com/$GITHUB_RAW"
+
 # lets try to use tmpfs for processing
 TEMPDIR="$MODDIR/temp" #fallback
 [ -w /sbin ] && TEMPDIR="/sbin/playintegrityfix"
@@ -37,12 +44,11 @@ fetch_autopif() {
     fi
 }
 
-main_link="https://raw.githubusercontent.com/KOWX712/PlayIntegrityFix/inject_s/module/autopif.sh"
-fallback_link="https://raw.gitmirror.com/KOWX712/PlayIntegrityFix/inject_s/module/autopif.sh"
-
-if fetch_autopif "$main_link"; then
+if fetch_autopif "$GITHUB_CDN@$AUTOPIF_PATH"; then
     true
-elif fetch_autopif "$fallback_link"; then
+elif fetch_autopif "$GITHUB_RAW/$AUTOPIF_PATH"; then
+    true
+elif fetch_autopif "$GITHUB_MIRROR/$AUTOPIF_PATH"; then
     true
 else
     echo "[!] OTA failed, skipping autopif update."
