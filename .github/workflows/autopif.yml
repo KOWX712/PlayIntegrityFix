@@ -81,7 +81,7 @@ jobs:
 
           if [ -z "$ID" ] || [ -z "$INCREMENTAL" ]; then
             echo "! Failed to get pif.prop for $product"
-            exit 1
+            exit 0
           fi
 
           if [ -z "$SECURITY_PATCH" ]; then
@@ -98,6 +98,7 @@ jobs:
           EOF
 
     - name: Upload digest artifact
+      if: hashFiles(format('{0}.prop', matrix.product)) != ''
       uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.product }}
@@ -129,7 +130,12 @@ jobs:
 
     - name: Export formatted device list
       run: |
-        echo '${{ needs.get_device_list.outputs.matrix }}' | jq '.include | map({model, product})' > device_list.json
+        echo '${{ needs.get_device_list.outputs.matrix }}' | jq -r '.include[] | @json' | while read -r device; do
+          product=$(echo "$device" | jq -r '.product')
+          if [ -f "device_prop/${product}.prop" ]; then
+            echo "$device"
+          fi
+        done | jq -s '.' | jq '{include: .}' | jq '.include | map({model, product})' > device_list.json
 
     - name: Commit and Push
       run: |
