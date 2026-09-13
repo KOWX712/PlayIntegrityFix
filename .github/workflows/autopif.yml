@@ -103,6 +103,7 @@ jobs:
 
   commit_and_push:
     needs: [get_device_list, process_rom]
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
