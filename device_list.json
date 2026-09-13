@@ -1,5 +1,13 @@
 [
   {
+    "model": "Pixel 6",
+    "product": "oriole_beta"
+  },
+  {
+    "model": "Pixel 6 Pro",
+    "product": "raven_beta"
+  },
+  {
     "model": "Pixel 6a",
     "product": "bluejay_beta"
   },
@@ -54,25 +62,5 @@
   {
     "model": "Pixel 9a",
     "product": "tegu_beta"
-  },
-  {
-    "model": "Pixel 10",
-    "product": "frankel_beta"
-  },
-  {
-    "model": "Pixel 10 Pro",
-    "product": "blazer_beta"
-  },
-  {
-    "model": "Pixel 10 Pro XL",
-    "product": "mustang_beta"
-  },
-  {
-    "model": "Pixel 10 Pro Fold",
-    "product": "rango_beta"
-  },
-  {
-    "model": "Pixel 10a",
-    "product": "stallion_beta"
   }
 ]
