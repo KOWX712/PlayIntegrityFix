@@ -1,4 +1,4 @@
-FINGERPRINT=google/tangorpro_beta/tangorpro:CANARY/ZP11.260821.010/16290768:user/release-keys
+FINGERPRINT=google/tangorpro_beta/tangorpro:CANARY/ZP11.260918.007/16484274:user/release-keys
 MANUFACTURER=Google
 MODEL=Pixel Tablet
-SECURITY_PATCH=2026-09-05
+SECURITY_PATCH=2026-10-05

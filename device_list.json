@@ -74,5 +74,21 @@
   {
     "model": "Pixel 10a",
     "product": "stallion_beta"
+  },
+  {
+    "model": "Pixel 11",
+    "product": "cubs_beta"
+  },
+  {
+    "model": "Pixel 11 Pro",
+    "product": "grizzly_beta"
+  },
+  {
+    "model": "Pixel 11 Pro XL",
+    "product": "kodiak_beta"
+  },
+  {
+    "model": "Pixel 11 Pro Fold",
+    "product": "yogi_beta"
   }
 ]
