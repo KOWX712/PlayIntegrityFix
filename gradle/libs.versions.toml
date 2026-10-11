@@ -1,7 +1,7 @@
 [versions]
-agp = "9.3.2"
-cxx = "29.0.14206865"
-hiddenapibypass = "6.1"
+agp = "9.4.1"
+cxx = "30.0.16248370"
+hiddenapibypass = "6.2"
 
 [libraries]
 cxx = { group = "org.lsposed.libcxx", name = "libcxx", version.ref = "cxx" }
