@@ -188,17 +188,36 @@ Mapping *mappingFor(State &state, const prop_info *info) {
     return nullptr;
 }
 
+const char *mapValue(const Config &config, std::string_view key) {
+    const auto it = config.propMap.find(std::string(key));
+    if (it == config.propMap.end() || it->second.empty()) {
+        return nullptr;
+    }
+    return it->second.c_str();
+}
+
 const char *overrideFor(const Config &config, std::string_view name) {
     if (name == "init.svc.adbd") return "stopped";
     if (name == "sys.usb.state") return "mtp";
-    if (name.ends_with("api_level") && !config.deviceInitialSdkInt.empty()) {
-        return config.deviceInitialSdkInt.c_str();
+    if (name == "ro.build.fingerprint") {
+        return mapValue(config, "FINGERPRINT");
     }
-    if (name.ends_with(".security_patch") && !config.securityPatch.empty()) {
-        return config.securityPatch.c_str();
+    if (name == "ro.build.id") {
+        if (!config.buildId.empty()) return config.buildId.c_str();
+        return mapValue(config, "ID");
     }
-    if (name.ends_with(".build.id") && !config.buildId.empty()) {
-        return config.buildId.c_str();
+    if (name == "ro.product.device") {
+        return mapValue(config, "DEVICE");
+    }
+    if (name == "ro.product.name") {
+        return mapValue(config, "PRODUCT");
+    }
+    if (name == "ro.build.version.security_patch") {
+        return config.securityPatch.empty() ? nullptr : config.securityPatch.c_str();
+    }
+    if (name == "ro.board.first_api_level") return "32";
+    if (name == "ro.product.first_api_level") {
+        return config.deviceInitialSdkInt.empty() ? nullptr : config.deviceInitialSdkInt.c_str();
     }
     return nullptr;
 }

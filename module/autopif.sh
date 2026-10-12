@@ -112,6 +112,23 @@ if [ -z "$SECURITY_PATCH" ]; then
 	SECURITY_PATCH="${CANARY_ID}-05"
 fi
 
+# Add corresponding first API level
+case $DEVICE in
+	bluejay) DEVICE_INITIAL_SDK_INT=32;; # Pixel 6a
+	panther|cheetah) DEVICE_INITIAL_SDK_INT=33;; # Pixel 7 Series
+	lynx) DEVICE_INITIAL_SDK_INT=33;; # Pixel 7a
+	felix) DEVICE_INITIAL_SDK_INT=33;; # Pixel Fold
+	tangorpro) DEVICE_INITIAL_SDK_INT=33;; # Pixel Tablet
+	shiba|husky) DEVICE_INITIAL_SDK_INT=34;; # Pixel 8 Series
+	akita) DEVICE_INITIAL_SDK_INT=34;; # Pixel 8a
+	tokay|caiman|komodo|comet) DEVICE_INITIAL_SDK_INT=34;; # Pixel 9 Series
+	tegu) DEVICE_INITIAL_SDK_INT=35;; # Pixel 9a
+	frankel|blazer|mustang|rango) DEVICE_INITIAL_SDK_INT=36;; # Pixel 10 Series
+	stallion) DEVICE_INITIAL_SDK_INT=35;; # Pixel 10a; Actual 36
+	cubs|grizzly|kodiak|yogi) DEVICE_INITIAL_SDK_INT=37;; # Pixel 11 Series
+	*) DEVICE_INITIAL_SDK_INT=37;;
+esac
+
 # Preserve previous setting
 pifProp="$MODDIR/pif.prop"
 [ -f "/data/adb/pif.prop" ] && pifProp="/data/adb/pif.prop"
@@ -131,6 +148,7 @@ FINGERPRINT=$FINGERPRINT
 MANUFACTURER=Google
 MODEL=$MODEL
 SECURITY_PATCH=$SECURITY_PATCH
+DEVICE_INITIAL_SDK_INT=$DEVICE_INITIAL_SDK_INT
 spoofBuild=$spoofBuild
 spoofProps=$spoofProps
 spoofProvider=$spoofProvider
