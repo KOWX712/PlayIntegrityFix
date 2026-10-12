@@ -1,7 +1,8 @@
-FINGERPRINT=google/oriole_beta/oriole:CANARY/ZP11.260618.005/15760424:user/release-keys
+FINGERPRINT=google/bluejay_beta/bluejay:CANARY/ZP11.260918.007/16484274:user/release-keys
 MANUFACTURER=Google
-MODEL=Pixel 6
-SECURITY_PATCH=2026-07-05
+MODEL=Pixel 6a
+SECURITY_PATCH=2026-10-05
+DEVICE_INITIAL_SDK_INT=32
 spoofBuild=true
 spoofProps=false
 spoofProvider=false

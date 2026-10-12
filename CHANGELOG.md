@@ -2,6 +2,14 @@
 
 Play Integrity Fix [INJECT] - fork by KOWX712
 
+## v4.8
+
+- Fix WebUI failed to save config.
+- Fix auto security patch trigger.
+- Drop dobby hook.
+- Add x86_64 support.
+- Fix some other known issues.
+
 ## v4.7
 
 - Fix resetprop command for KernelSU.
