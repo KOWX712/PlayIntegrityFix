@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/KernelSU-Modules/tools/main/schemas/module.schema.json
+schemaVersion: 1
+id: playintegrityfix
+name: Play Integrity Fix
+summary: Universal modular fix for Play Integrity on devices running Android 8-17
+description: README.md
+license: GPL-3.0
+homepage: https://github.com/KOWX712/PlayIntegrityFix
+support: https://github.com/KOWX712/PlayIntegrityFix/issues
+tags: [playintegrity]
+icon: webui/public/icon.jpg
+
+authors:
+  - name: KOWX712
+    url: https://github.com/KOWX712
+
+compatibility:
+  androidMinApi: 26
+  architectures: [arm64-v8a, armeabi-v7a, x86_64]
+
+release:
+  assetPattern: "PlayIntegrityFix*.zip"
