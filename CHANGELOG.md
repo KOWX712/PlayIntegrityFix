@@ -2,6 +2,10 @@
 
 Play Integrity Fix [INJECT] - fork by KOWX712
 
+## v4.9
+
+- Fix spoofProps.
+
 ## v4.8
 
 - Fix WebUI failed to save config.
