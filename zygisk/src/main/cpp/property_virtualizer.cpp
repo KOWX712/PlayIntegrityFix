@@ -1,9 +1,12 @@
 #include "property_virtualizer.hpp"
 
 #include <android/log.h>
+#include <climits>
 #include <fcntl.h>
+#include <linux/futex.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <sys/syscall.h>
 #include <sys/sysmacros.h>
 #include <sys/system_properties.h>
 #include <unistd.h>
@@ -60,13 +63,15 @@ struct Override {
     uintptr_t offset = 0;
     std::string name;
     std::string value;
+    bool wasLong = false;
+    uintptr_t longOffset = 0;
+    size_t longLen = 0;
 };
 
 struct State {
     const Config &config;
     std::vector<Mapping> mappings;
     std::vector<Override> overrides;
-    bool enumerationFailed = false;
 };
 
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "PIF", __VA_ARGS__)
@@ -212,6 +217,12 @@ const char *overrideFor(const Config &config, std::string_view name) {
     if (name == "ro.product.name") {
         return mapValue(config, "PRODUCT");
     }
+    if (name == "ro.product.brand") {
+        return mapValue(config, "BRAND");
+    }
+    if (name == "ro.product.model") {
+        return mapValue(config, "MODEL");
+    }
     if (name == "ro.build.version.security_patch") {
         return config.securityPatch.empty() ? nullptr : config.securityPatch.c_str();
     }
@@ -225,7 +236,6 @@ const char *overrideFor(const Config &config, std::string_view name) {
 void enumerateProperty(void *cookie, const char *name, const char *value, uint32_t serial) {
     auto *state = static_cast<State *>(cookie);
     if (name == nullptr) {
-        state->enumerationFailed = true;
         return;
     }
 
@@ -234,37 +244,50 @@ void enumerateProperty(void *cookie, const char *name, const char *value, uint32
         return;
     }
     if (strlen(replacement) >= PROP_VALUE_MAX) {
-        LOGE("[PROP-VIRT] %s override exceeds PROP_VALUE_MAX", name);
-        state->enumerationFailed = true;
+        LOGE("[PROP-VIRT] %s override exceeds PROP_VALUE_MAX; skipping", name);
         return;
     }
 
     const prop_info *info = __system_property_find(name);
-    Mapping *mapping = info == nullptr ? nullptr : mappingFor(*state, info);
+    if (info == nullptr) {
+        LOGE("[PROP-VIRT] %s not found; skipping", name);
+        return;
+    }
+    Mapping *mapping = mappingFor(*state, info);
     if (mapping == nullptr) {
-        LOGE("[PROP-VIRT] %s has no validated owning area", name);
-        state->enumerationFailed = true;
+        LOGE("[PROP-VIRT] %s has no validated owning area; skipping", name);
         return;
     }
 
-    if (serial & kLongPropertyFlag) {
-        LOGE("[PROP-VIRT] %s uses long-property encoding; refusing remap", name);
-        state->enumerationFailed = true;
-        return;
+    Override entry{.mapping = mapping,
+                   .offset = reinterpret_cast<uintptr_t>(info) - mapping->start,
+                   .name = name,
+                   .value = replacement};
+    if ((serial & kLongPropertyFlag) != 0) {
+        LOGE("[PROP-VIRT] %s is long-encoded; demoting to inline", name);
+        const uintptr_t infoAddr = reinterpret_cast<uintptr_t>(info);
+        const uintptr_t valueAddr = reinterpret_cast<uintptr_t>(value);
+        if (valueAddr >= infoAddr + sizeof(InlinePropertyInfo)) {
+            entry.wasLong = true;
+            entry.longOffset = valueAddr - infoAddr;
+            entry.longLen = strlen(value);
+        }
     }
-    state->overrides.push_back({.mapping = mapping,
-                                .offset = reinterpret_cast<uintptr_t>(info) - mapping->start,
-                                .name = name,
-                                .value = replacement});
+    state->overrides.push_back(std::move(entry));
 }
 
 void enumerateCallback(const prop_info *info, void *cookie) {
     if (info == nullptr) {
-        static_cast<State *>(cookie)->enumerationFailed = true;
         return;
     }
     __system_property_read_callback(info, enumerateProperty, cookie);
 }
+
+// bionic opens property areas lazily on first access (ContextNode::CheckAccessAndOpen),
+// so a warm-up pass forces every accessible area open BEFORE parseMappings snapshots
+// /proc/self/maps. Without this, areas first opened during the real enumeration were
+// missing from state.mappings and every property from them failed validation.
+void warmupCallback(const prop_info *, void *) {}
 
 bool preflightOpen(Mapping &mapping) {
     mapping.fd = open(mapping.path.c_str(), O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
@@ -316,11 +339,35 @@ bool applyOverride(const Mapping &mapping, const Override &override) {
     }
 
     auto *info = reinterpret_cast<InlinePropertyInfo *>(mapping.start + override.offset);
-    const uint32_t oldSerial = info->serial;
-    const uint32_t version = ((oldSerial | 1U) + 1U) & (0x00ffffffU & ~kLongPropertyFlag);
+
+    if (override.wasLong) {
+        const size_t residueStart = override.offset + override.longOffset;
+        if (residueStart < override.offset || override.longLen >= length ||
+            residueStart + override.longLen + 1 > length) {
+            return false;
+        }
+        memset(reinterpret_cast<void *>(mapping.start + residueStart), 0,
+               override.longLen + 1);
+    }
+
+    const uint32_t len = static_cast<uint32_t>(override.value.size());
+    const uint32_t oldSerial = __atomic_load_n(&info->serial, __ATOMIC_RELAXED);
+    const uint32_t serialDirty = oldSerial | 1U;
+    __atomic_store_n(&info->serial, serialDirty, __ATOMIC_RELAXED);
     memset(info->value, 0, sizeof(info->value));
-    memcpy(info->value, override.value.c_str(), override.value.size() + 1);
-    info->serial = (static_cast<uint32_t>(override.value.size()) << 24) | version;
+    memcpy(info->value, override.value.c_str(), len + 1);
+
+    __atomic_thread_fence(__ATOMIC_RELEASE);
+
+    constexpr uint32_t kCounterMask = 0x00ffffffU & ~kLongPropertyFlag;
+    const uint32_t lenFlags = (len << 24) & 0xff000000U;
+    const uint32_t visible = lenFlags | ((serialDirty + 1U) & kCounterMask);
+    __atomic_store_n(&info->serial, visible, __ATOMIC_RELAXED);
+    syscall(SYS_futex, &info->serial, FUTEX_WAKE, INT_MAX, nullptr, nullptr, 0);
+
+    __atomic_thread_fence(__ATOMIC_RELEASE);
+    const uint32_t hidden = lenFlags | ((serialDirty & ~1U) & kCounterMask);
+    __atomic_store_n(&info->serial, hidden, __ATOMIC_RELAXED);
     return true;
 }
 
@@ -405,10 +452,11 @@ void rollback(std::vector<Mapping> &mappings, const Config &config) {
 
 bool install(const Config &config) {
     State state{.config = config};
+    __system_property_foreach(warmupCallback, nullptr);
     if (!parseMappings(state.mappings, config)) {
         return false;
     }
-    if (__system_property_foreach(enumerateCallback, &state) != 0 || state.enumerationFailed) {
+    if (__system_property_foreach(enumerateCallback, &state) != 0) {
         LOGE("[PROP-VIRT] property enumeration failed");
         return false;
     }
