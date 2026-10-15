@@ -161,9 +161,9 @@ export default function App() {
       setConfigValues(prev => ({ ...prev, [config]: value }))
       if (config === 'spoofSignature') {
         const sig = await Cli.checkRomSignature()
-        if (sig === 'testkey' && value) {
+        if (sig === 'testkey' && !value) {
           terminal.output('[!] ' + i18n.t('output_testkey'))
-        } else if (sig === 'releasekey' && !value) {
+        } else if (sig === 'releasekey' && value) {
           terminal.output('[+] ' + i18n.t('output_releasekey'))
         }
       }
