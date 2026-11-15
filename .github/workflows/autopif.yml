@@ -2,7 +2,7 @@ name: autopif
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '23 3 * * *'
   workflow_dispatch:
   push:
     paths:
