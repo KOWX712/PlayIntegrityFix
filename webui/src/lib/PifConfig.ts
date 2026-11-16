@@ -109,7 +109,7 @@ export class PifConfig {
         `${GITHUB_CDN}@${BRANCH}/${filePath}`,
         `${GITHUB_RAW}/${BRANCH}/${filePath}`,
         `${GITHUB_MIRROR}/${BRANCH}/${filePath}`,
-      ])).text()
+      ], { cache: 'reload' })).text()
       const pifProp = text.trim()
       await File.write(PIF_PROP_DEFAULT_PATH, pifProp)
       if (await File.exist(PIF_PROP_CUSTOM_PATH)) {

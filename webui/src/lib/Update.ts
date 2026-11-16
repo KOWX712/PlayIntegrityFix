@@ -39,7 +39,7 @@ export class Update {
         `${GITHUB_CDN}@${filePath}`,
         `${GITHUB_RAW}/${filePath}`,
         `${GITHUB_MIRROR}/${filePath}`,
-      ])).text()
+      ], { cache: 'reload' })).text()
 
       try {
         await this.#pifConfig.write(result)
@@ -110,7 +110,7 @@ export class Update {
         `${GITHUB_CDN}@${filePath}`,
         `${GITHUB_RAW}/${filePath}`,
         `${GITHUB_MIRROR}/${filePath}`,
-      ])).json()
+      ], { cache: 'reload' })).json()
 
       if (!Array.isArray(devices)) throw new Error('Invalid device list format')
       return devices.filter((d): d is DeviceInfo => !!(d.model && d.product))

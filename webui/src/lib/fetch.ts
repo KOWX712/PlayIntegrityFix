@@ -1,12 +1,13 @@
 /**
  * Try an array of URLs in order, return the first successful Response.
  * @param urls Array of URLs to try
+ * @param init Optional RequestInit configuration for fetch
  * @returns Response object
  */
-export async function fallbackFetch(urls: string[]): Promise<Response> {
+export async function fallbackFetch(urls: string[], init?: RequestInit): Promise<Response> {
   for (const url of urls) {
     try {
-      const res = await fetch(url)
+      const res = await fetch(url, init)
       if (res.ok) return res
     } catch (e) {
       // Log the first error for debugging, but don't stop execution
