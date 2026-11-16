@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: ubuntu-latest
 
     steps:
     - name: Check out
